@@ -32,6 +32,7 @@ end
 
 group :development do
   gem 'sqlite3'
+  gem "rails-erd"
 end
 
 # Use ActiveModel has_secure_password
