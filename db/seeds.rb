@@ -17,6 +17,16 @@ posts = Post.all
     )
 end
 
+Post.create!(
+  title: "A nice try",
+  body: "I'm adding in a body tag"
+  )
+
+Post.create!(
+  title: "A nice try again",
+  body: "I'm adding in another body tag"
+  )
+
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
