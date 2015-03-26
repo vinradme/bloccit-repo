@@ -7,6 +7,13 @@ require 'faker'
     body: Faker::Lorem.paragraph
     )
 end
+
+Post.find_or_create_by!(
+  title: "This title is unique",
+  body: "This body is unique"
+  )
+
+
 posts = Post.all
 
 # Create Comments
@@ -17,15 +24,9 @@ posts = Post.all
     )
 end
 
-Post.find_or_create_by(title: "A nice try") do |post|
-  post.title = "A nice try"
-  post.body = "I'm adding in a body tag"
-  end
-
-Post.find_or_create_by(title: "A nice try again") do |post|
-  post.title = "A nice try again",
-  post.body = "I'm adding in another body tag"
-end
+Comment.find_or_create_by!(
+  body: "This comment is unique"
+  )
 
 puts "Seed finished"
 puts "#{Post.count} posts created"
