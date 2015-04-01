@@ -20,10 +20,6 @@ class PostPolicy < ApplicationPolicy
     end
 
     def index?
-      user.present?
-    end
-
-    def show?
-      user.present? && (user.admin? || user.moderator?)
+      true
     end
 end
