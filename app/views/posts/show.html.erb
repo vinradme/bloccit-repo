@@ -4,9 +4,25 @@
   <div class = "col-md-8">
     <p><%= @post.body %></p>
   </div>
+
+  <div class = "col-md-8">
+     <div class="media">
+       <div class="media-body">
+         <h4 class="media-heading">
+           Summary: <%= link_to @summary.description, [@topic, @post, @summary] %>
+         </h4>
+         <small>
+            submitted <%= time_ago_in_words(@summary.created_at) %> ago for <%= @post.title %>
+         </small>
+       </div>
+     </div>
+  </div>
+
+
   <div class = "col-md-8">
     <% if policy(@post).edit? %>
       <%= link_to "Edit", edit_topic_post_path(@topic, @post),class:"btn btn-success" %>
     <% end %>
   </div>
+
   
