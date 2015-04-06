@@ -2,27 +2,44 @@
 
 <div class = "row">
   <div class = "col-md-8">
-    <p><%= @post.body %></p>
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading">
+          <p><%= @post.body %></p>
+          <small>
+            submitted <%= time_ago_in_words(@post.created_at) %> ago by <%= @post.user.name %><br />
+            <%= @post.comments.count %> Comments
+          </small>
+        </h4>
+      <div>
+    </div>
   </div>
-
   <div class = "col-md-8">
      <div class="media">
        <div class="media-body">
          <h4 class="media-heading">
-           Summary: <%= link_to @summary.description, [@topic, @post, @summary] %>
+          <%if @summary %>
+           <p><em>Summary: </em></p><%= link_to @summary.description, [@topic, @post, @summary] %>
+          <% else %>
+            <%= link_to "Create Summary", new_topic_post_summary_path(@topic, @post, @summary), class: "btn btn-success" %>
+          <% end %>
          </h4>
-         <small>
-            submitted <%= time_ago_in_words(@summary.created_at) %> ago for <%= @post.title %>
-         </small>
        </div>
      </div>
   </div>
 
 
+
   <div class = "col-md-8">
     <% if policy(@post).edit? %>
-      <%= link_to "Edit", edit_topic_post_path(@topic, @post),class:"btn btn-success" %>
+      <%= link_to "Edit Post", edit_topic_post_path(@topic, @post),class:"btn btn-success" %>
     <% end %>
-  </div>
+  </div><br />
+
+
+
+
+
+
 
   
