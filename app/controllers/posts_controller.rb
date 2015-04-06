@@ -5,10 +5,8 @@ class PostsController < ApplicationController
   end
 
   def show
-        @post = Post.find(params[:id])
-        if !(@post.user == current_user)
-            authorize @post
-        end
+    @post = Post.find(params[:id])
+    authorize @post
   end
 
   def new

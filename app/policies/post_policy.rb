@@ -24,6 +24,14 @@ class PostPolicy < ApplicationPolicy
     end
 
     def show?
-      user.present? && (user.admin? || user.moderator?)
+      if user.present?
+        if user.admin? || user.moderator? || scope.where( user_id: user.id ).exists?
+          true
+        else
+          false
+        end
+      else
+        false
+      end
     end
 end
