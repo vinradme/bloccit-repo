@@ -19,9 +19,9 @@
        <div class="media-body">
          <h4 class="media-heading">
           <%if @summary %>
-           <p><em>Summary: </em></p><%= link_to @summary.description, [@topic, @post, @summary] %>
+           <p><em>Summary: </em></p><%= link_to @summary.description, @summary %>
           <% else %>
-            <%= link_to "Create Summary", new_topic_post_summary_path(@topic, @post, @summary), class: "btn btn-success" %>
+            <%= link_to "Create Summary", new_summary_path(@topic, @post, @summary), class: "btn btn-success" %>
           <% end %>
          </h4>
        </div>

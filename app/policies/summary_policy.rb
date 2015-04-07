@@ -1,7 +1,7 @@
 class SummaryPolicy < ApplicationPolicy
 
   def index?
-    user.present?
+    true
   end
 
   def create?

@@ -5,9 +5,30 @@
     <p><%= @summary.description %></p>
   </div>
   <div class = "col-md-8">
-    <% if policy(@summary).edit? %>
-      <%= link_to "Edit", edit_topic_post_summary_path(@topic, @post, @summary),class:"btn btn-success" %>
+    <% if @post %>
+      <% if policy(@summary).edit? %>
+        <%= link_to "Edit Summary", edit_summary_path(@summary),class:"btn btn-success" %>
+      <% end %>
+    <div class = "col-md-8">
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">
+            <p><strong>Post title: </strong><%= @post.title %></p>
+            <p><strong>Post Body: </strong><%= @post.body %></p>
+            <small>
+              submitted <%= time_ago_in_words(@post.created_at) %> ago by <%= @post.user.name %><br />
+              <%= @post.comments.count %> Comments
+            </small>
+          </h4>
+        <div>
+      </div>
+   </div> 
+    <% else %>
+      <% if policy(Summary.new).create? %>
+        <%= link_to "New Post", new_summary_path(@summary), class: 'btn btn-success' %>
+      <% end %>
     <% end %>
   </div>
+</div>
 
 
