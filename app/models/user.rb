@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :posts
-  mount_uploader :avatar, AvatarUploader
 
   def admin?
     role == 'admin'
@@ -13,5 +12,7 @@ class User < ActiveRecord::Base
   def moderator?
     role == 'moderator'
   end
+
+  mount_uploader :avatar, AvatarUploader
   
 end
