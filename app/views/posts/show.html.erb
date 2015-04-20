@@ -15,11 +15,15 @@
     <% end %>
   </div>
   <div class = "col-md-8">
-    <p><strong> Comments </strong></p>
-      <%= render partial: 'comments/comment', collection: @comments %>
+    <% if policy(@comments).create? %>
+      <p><strong> Comments </strong></p>
+        <%= render partial: 'comments/comment', collection: @comments %>
+    <% end %>
   </div></br>
   <div class = "col-md-8">
-    <%= render partial: 'comments/form', locals: {topic: @topic, post: @post, comment: @comments.new} %>
+    <% if policy(@comments).create? %>
+      <%= render partial: 'comments/form', locals: {topic: @topic, post: @post, comment: @comments.new} %>
+    <% end %>
   </div>
 </div>
   
