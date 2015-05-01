@@ -4,10 +4,11 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = current_user.comments.build(comment_params)
     @comment.post = @post
-    @topic =  @post.topic
+    @topic = @post.topic
+
     if @comment.save
       flash[:notice] = "Comment was saved."
-      redirect_to [@topic, @post, @comments]
+      redirect_to [@topic, @post]
     else
       flash[:error] = "There was an error saving the comment. Please try again."
       render "posts/show"
@@ -15,9 +16,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-   @topic = Topic.find(params[:topic_id])
-   @post = @topic.posts.find(params[:post_id])
+   @post = Post.find(params[:post_id])
    @comment = @post.comments.find(params[:id])
+   @topic = @post.topic
 
    authorize @comment
    if @comment.destroy
